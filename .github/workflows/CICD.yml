@@ -14,12 +14,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Prepare WordPress Zip
         run: |
           WP_LINK=$(cat wp-version-control.cfg)
           wget -O "./wordpress.zip" $WP_LINK
+
       - name: Prepare plugins and theme zip
         run: zip -r wpcontent.zip plugins mu-plugins themes
+
       - name: Copy Zips to Server
         uses: appleboy/scp-action@master
         with:
@@ -29,6 +32,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: "./wordpress.zip, ./wpcontent.zip"
           target: ${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}
+
       - name: Enable Maintenance Mode
         uses: appleboy/scp-action@master
         with:
@@ -38,6 +42,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: ".maintenance"
           target: ${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}
+
       - name: Update WordPress Core
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -51,6 +56,7 @@ jobs:
             unzip -o "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || 'public_html/live.geniuscourses.com' }}/wordpress.zip" -d "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/"
             mv "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wordpress"/* "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/"
             rm -r "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wordpress"
+
       - name: Update Plugins and Theme
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -61,6 +67,7 @@ jobs:
           script: |
             rm -rf "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wp-content/plugins" "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wp-content/mu-plugins" "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wp-content/themes"
             unzip -o "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wpcontent.zip" -d "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wp-content/"
+
       - name: Disable Maintenance Mode and Remove zips
         uses: appleboy/ssh-action@v1.0.3
         with:
