@@ -57,3 +57,15 @@ function create_block_blocks_gamestore_block_init() {
 	}
 }
 add_action( 'init', 'create_block_blocks_gamestore_block_init' );
+
+add_filter( 'block_categories_all', function ( $categories ) {
+	return array_merge(
+		$categories,
+		array(
+			array(
+				'slug'  => 'gamestore',
+				'title' => __( 'GameStore', 'blocks-gamestore' ),
+			),
+		)
+	);
+});
