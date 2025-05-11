@@ -53,7 +53,7 @@ jobs:
           script: |
             find "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}" -type f -name "*.php" ! -name "wp-config.php" -delete
             rm -r "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wp-admin/" "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wp-includes/"
-            unzip -o "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || 'public_html/live.geniuscourses.com' }}/wordpress.zip" -d "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/"
+            unzip -o "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wordpress.zip" -d "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/"
             mv "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wordpress"/* "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/"
             rm -r "${{ github.event_name == 'push' && '/home/huts6/hutsaluck.site/dev' || '/home/huts6/hutsaluck.site/live' }}/wordpress"
 
