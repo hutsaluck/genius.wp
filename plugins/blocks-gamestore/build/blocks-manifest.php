@@ -26,7 +26,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'blocks-gamestore/block-header',
-		'version' => '0.1.0',
+		'version' => '0.0.4',
 		'title' => 'Header',
 		'category' => 'gamestore',
 		'icon' => 'layout',
