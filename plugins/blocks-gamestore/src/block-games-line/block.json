@@ -1,15 +1,21 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "blocks-gamestore/block-contact",
+	"name": "blocks-gamestore/games-line",
 	"version": "0.1.0",
-	"title": "Contact Form",
+	"title": "Games Line",
 	"category": "gamestore",
-	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"icon": "columns",
+	"description": "Dynamic Animated Line with Games",
 	"example": {},
 	"supports": {
 		"html": false
+	},
+	"attributes": {
+		"count": {
+			"type": "number",
+			"default": 12
+		}
 	},
 	"textdomain": "blocks-gamestore",
 	"editorScript": "file:./index.js",

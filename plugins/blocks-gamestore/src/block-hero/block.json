@@ -4,7 +4,7 @@
 	"name": "blocks-gamestore/block-hero",
 	"version": "0.0.1",
 	"title": "Hero Block",
-	"category": "widgets",
+	"category": "gamestore",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
